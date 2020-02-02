@@ -3,39 +3,36 @@
 Kernel: Weeb Kernel
 Type: BETA
 Device: OnePlus 7/T/Pro/5G
-Compiler: Proton Clang 10.0.0
+Compiler: GCC
 Branch: staging
-HEAD: 31c5d6963a027
-Build Number: v1.0rc1
+HEAD: 65ce97e1d647e
+Build Number: v1.0-C2
 ```
 ## Changelog
 ```
-- Switch to CIB for frequency handling
---- Default Settings
--- Screen Off Min Frequencies[In Mhz]:
-Little: 576000
-Big: 710400
-Prime: 825600
--- Screen On Min Frequencies[In Mhz]:
-Little: 768000
-Big: 1056000
-Prime: 1171200
--- Input Boost Frequencies[In Mhz]:
-Little: 1382400
-Big: 1056000 [ Unchanged ]
-Prime: 1171200 [ Unchanged ]
--- Input Boost Duration: 500ms
--- Max Boost Frequencies[In Mhz]:
-Little: 1785600
-Big: 2016000
-Prime: 2016000
--- Wake Boost Duration: 1000ms
--- App Launch Boost Duration: 1500ms
-- Change display cpuset to 0-3
-- Merge some memleak fixes
-- Silence some spammy logs
-- Add sched_boost node but keep it noop
-- Set GPU Idle timeout to 64ms
-- Performance Critical shiz
-- Devfreq boost only on input for 500ms
+Initial Release!
+- Cleanly based over latest CAF tag with minimal OnePlus changes
+-- RAM Boost MUST be disabled
+- Merged latest LTS subversion tag
+- BBR as the default TCP network congestion control
+- vDSO 32 patches to improve 32-bit performance
+- vmalloc patches backported from mainline
+- UFS optimizations
+- Latest CFQ i/o scheduler
+- Removed VLAs treewide
+- Removed RTB logging
+- Block userspace from messing with cpufreq completely
+- cpu_input_boost driver by kerneltoast to handle cpu boosting
+- devfreq_boost driver by kerneltoast to handle devfreq boosting
+- Use userspace LMKD alongside PSI
+- Use full PELT with sched_boost added ( but all its influences removed )
+  to satisfy userspace
+- kcal support
+- wireguard support
+- clean up and optimize some OnePlus changes
+- Upstream KGSL and qseecom to latest CAF
+- Import several optimizations from Pixel 4
+- Don't boost cpu/task utilization by default with schedtune.boost
+-- This behaviour is only when schedtune.boost is set to 2
+-- Tasks are still biased to big cluster by default for top-app
 ```
